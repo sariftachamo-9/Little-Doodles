@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Heart, ShoppingBag, Eye, Star, FileText } from 'lucide-react';
 import { Product } from '../types/store';
 import { CuteAchievementOverlay } from './CuteAchievementOverlay';
 import { soundManager } from '../utils/soundEffects';
+import { BarnabyTeddySVG, BellaBunnySVG, SunnyDucklingSVG } from './characters/CuteMascots';
 
 interface ProductCardProps {
   product: Product;
@@ -24,6 +25,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   onUnlockAchievement,
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [justAdded, setJustAdded] = useState(false);
+
+  const handleAddToCartClick = () => {
+    soundManager.playAchievementChime();
+    onAddToCart(product);
+    setJustAdded(true);
+    setTimeout(() => setJustAdded(false), 1400);
+  };
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -103,6 +112,30 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           >
             <Heart className={`w-4 h-4 ${isFavorite ? 'fill-rose-500 text-rose-500' : 'text-stone-400'}`} />
           </motion.button>
+
+          {/* Delightful Mini Mascot Sticker on Hover */}
+          <AnimatePresence>
+            {isHovered && (
+              <motion.div
+                initial={{ scale: 0, rotate: -12, y: 6 }}
+                animate={{ scale: 1, rotate: 0, y: 0 }}
+                exit={{ scale: 0, opacity: 0 }}
+                transition={{ type: 'spring', damping: 14, stiffness: 260 }}
+                className="absolute top-2 left-2 bg-white/95 rounded-2xl p-1 border-2 border-amber-300 shadow-sm pointer-events-none z-20 flex items-center gap-1.5"
+              >
+                {product.category === 'Color Book' ? (
+                  <BellaBunnySVG size={26} />
+                ) : product.category === '1 2 3 Numbers' ? (
+                  <SunnyDucklingSVG size={24} />
+                ) : (
+                  <BarnabyTeddySVG size={26} />
+                )}
+                <span className="font-cartoon font-extrabold text-[10px] text-amber-950 pr-1">
+                  {product.category === 'Color Book' ? 'Color me!' : product.category === '1 2 3 Numbers' ? 'Count 123!' : 'Trace ABC!'}
+                </span>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         {/* Content */}
@@ -145,7 +178,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </div>
         </div>
 
-        <div className="flex items-center gap-1.5">
+        <div className="flex items-center gap-1.5 relative">
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={() => onOpenQuickView(product)}
@@ -156,14 +189,29 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </motion.button>
 
           <motion.button
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.94 }}
-            onClick={() => onAddToCart(product)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.92 }}
+            onClick={handleAddToCartClick}
             className="px-3.5 py-2 rounded-xl bg-amber-400 hover:bg-amber-300 text-amber-950 font-cartoon font-black text-xs border border-amber-500 shadow-[0_2px_0_0_#D97706] flex items-center gap-1.5 transition-transform cursor-pointer"
           >
             <ShoppingBag className="w-3.5 h-3.5" />
             <span>Add</span>
           </motion.button>
+
+          {/* Floating celebratory animation badge when added */}
+          <AnimatePresence>
+            {justAdded && (
+              <motion.span
+                initial={{ opacity: 0, y: 0, scale: 0.6 }}
+                animate={{ opacity: 1, y: -24, scale: 1.05 }}
+                exit={{ opacity: 0, y: -32 }}
+                transition={{ duration: 0.45 }}
+                className="absolute -top-3 right-0 bg-emerald-500 text-white font-cartoon font-black text-[11px] px-2.5 py-0.5 rounded-full shadow-md z-30 pointer-events-none whitespace-nowrap"
+              >
+                +1 in Backpack! 🎒
+              </motion.span>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </motion.div>

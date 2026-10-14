@@ -55,7 +55,7 @@ export const CuteAchievementOverlay: React.FC<CuteAchievementOverlayProps> = ({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="absolute -inset-1 rounded-3xl bg-linear-to-r from-amber-400/40 via-rose-400/40 to-yellow-300/40 -z-10 blur-xs"
+              className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-amber-400/40 via-rose-400/40 to-yellow-300/40 -z-10 blur-xs"
             />
 
             {/* Top Star Burst Container */}
@@ -91,7 +91,7 @@ export const CuteAchievementOverlay: React.FC<CuteAchievementOverlayProps> = ({
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -12, scale: 0.9 }}
                 transition={{ type: 'spring', damping: 15, stiffness: 280 }}
-                className="w-full bg-linear-to-r from-amber-400 via-yellow-300 to-amber-400 border-2 border-amber-500 rounded-2xl p-2 shadow-[0_6px_16px_rgba(217,119,6,0.35)] flex items-center justify-between gap-2 select-none"
+                className="w-full bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400 border-2 border-amber-500 rounded-2xl p-2 shadow-[0_6px_16px_rgba(217,119,6,0.35)] flex items-center justify-between gap-2 select-none"
               >
                 <div className="flex items-center gap-2">
                   <motion.div

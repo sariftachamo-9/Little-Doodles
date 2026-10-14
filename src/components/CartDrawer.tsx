@@ -60,11 +60,16 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
     }, 1200);
   };
 
+  const [downloadSuccess, setDownloadSuccess] = useState(false);
+
   const handleDownloadPurchasedFiles = () => {
-    alert(`🎉 Success! Downloading high-resolution printables package for ${items.length} activity books. Happy printing!`);
-    onClearCart();
-    setCheckoutComplete(false);
-    onClose();
+    setDownloadSuccess(true);
+    setTimeout(() => {
+      onClearCart();
+      setCheckoutComplete(false);
+      setDownloadSuccess(false);
+      onClose();
+    }, 2000);
   };
 
   if (!isOpen) return null;
@@ -137,14 +142,20 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   </div>
                 </div>
 
-                <div className="pt-2">
+                <div className="pt-2 space-y-2">
                   <button
                     onClick={handleDownloadPurchasedFiles}
+                    disabled={downloadSuccess}
                     className="w-full py-3.5 bg-emerald-500 hover:bg-emerald-600 text-white font-cartoon font-black text-sm rounded-2xl shadow-[0_4px_0_0_#059669] flex items-center justify-center gap-2 transition-transform active:translate-y-1 cursor-pointer"
                   >
                     <Download className="w-5 h-5" />
-                    <span>Download All Printables Now!</span>
+                    <span>{downloadSuccess ? 'Preparing High-Res PDF Pack...' : 'Download All Printables Now!'}</span>
                   </button>
+                  {downloadSuccess && (
+                    <div className="p-2.5 bg-emerald-100 rounded-xl text-center text-xs font-cartoon font-bold text-emerald-900 border border-emerald-300">
+                      🎉 Success! Downloading high-resolution printables package. Happy printing!
+                    </div>
+                  )}
                 </div>
               </motion.div>
             ) : items.length === 0 ? (

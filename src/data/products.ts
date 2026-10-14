@@ -2,9 +2,11 @@ import { Product } from '../types/store';
 
 import animalsDoodleImg from '../assets/images/cartoon_animals_doodle_1791958252947.jpg';
 import rainbowSunImg from '../assets/images/cartoon_rainbow_sun_1791958288988.jpg';
-import coloringAnimalsImg from '../assets/images/coloring_animals_pack_1791964705901.jpg';
 import printableBundleImg from '../assets/images/printable_bundle_preview_1791956962182.jpg';
-import routineCardsImg from '../assets/images/routine_flashcards_pack_1791964747473.jpg';
+
+const coloringAnimalsImg = animalsDoodleImg;
+const routineCardsImg = printableBundleImg;
+
 
 export const productsData: Product[] = [
   {

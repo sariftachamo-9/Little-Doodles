@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowDown, CheckCircle2, Palette } from 'lucide-react';
-import mascotLogoImg from '../assets/images/littledoodles_mascot_logo_1791956943319.jpg';
 import { ProductCategory } from '../types/store';
+import { HeroMascotCard } from './characters/HeroMascotCard';
 
 interface HeroBannerProps {
   onSelectCategory: (category: ProductCategory) => void;
@@ -16,17 +16,10 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
   return (
     <div className="relative overflow-hidden rounded-[36px] bg-gradient-to-br from-amber-100 via-amber-50 to-orange-100/70 border-4 border-amber-300 p-6 sm:p-10 shadow-[0_8px_0_0_#FDE68A]">
       
-      {/* Floating Playful Background Bubbles */}
-      <motion.div 
-        animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }}
-        transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-        className="absolute -top-10 -right-10 w-48 h-48 bg-yellow-200/50 rounded-full blur-2xl pointer-events-none" 
-      />
-      <motion.div 
-        animate={{ y: [0, 12, 0], rotate: [0, -4, 0] }}
-        transition={{ repeat: Infinity, duration: 7, ease: "easeInOut" }}
-        className="absolute -bottom-10 -left-10 w-48 h-48 bg-orange-200/40 rounded-full blur-2xl pointer-events-none" 
-      />
+      {/* Clean Soft Ambient Glows (Static) */}
+      <div className="absolute -top-10 -right-10 w-48 h-48 bg-yellow-200/50 rounded-full blur-2xl pointer-events-none" />
+      <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-orange-200/40 rounded-full blur-2xl pointer-events-none" />
+
 
       <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         
@@ -120,37 +113,9 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({
 
         </div>
 
-        {/* Right Column: Cartoon Mascot Hero Card */}
+        {/* Right Column: Interactive Character Studio Hero Card */}
         <div className="lg:col-span-5 flex justify-center">
-          <motion.div 
-            whileHover={{ rotate: 1, scale: 1.02 }}
-            className="relative w-full max-w-sm bg-white rounded-3xl border-4 border-amber-300 p-4 shadow-[0_8px_0_0_#FBBF24]"
-          >
-            {/* Top Mascot Badge */}
-            <div className="absolute -top-4 -right-3 bg-amber-400 text-amber-950 font-cartoon font-black text-xs px-3 py-1 rounded-full border-2 border-amber-500 shadow-xs rotate-6">
-              Rs. 220–750 ($2.20–$7) ⭐
-            </div>
-
-            {/* Visual Mascot Art */}
-            <div className="relative rounded-2xl overflow-hidden aspect-4/3 bg-amber-50 border-2 border-amber-200">
-              <img 
-                src={mascotLogoImg} 
-                alt="LittleDoodles Mascot with magic crayon" 
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-
-            {/* Quick Caption */}
-            <div className="mt-3.5 text-center space-y-1">
-              <h3 className="font-cartoon font-black text-base text-[#2B2A29]">
-                Meet LittleDoodle the Explorer! 🌟
-              </h3>
-              <p className="text-xs font-cartoon text-[#78716C]">
-                Ready to read ABC, color big books, and count 1 2 3!
-              </p>
-            </div>
-          </motion.div>
+          <HeroMascotCard />
         </div>
 
       </div>

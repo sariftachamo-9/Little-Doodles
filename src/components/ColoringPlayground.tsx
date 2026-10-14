@@ -10,6 +10,7 @@ import {
   Stamp,
   Brush
 } from 'lucide-react';
+import { BellaBunnySVG } from './characters/CuteMascots';
 
 type ToolMode = 'brush' | 'stamp' | 'eraser';
 
@@ -266,6 +267,21 @@ export const ColoringPlayground: React.FC = () => {
             Pick cheerful colors, cute animal stamps, and color right on the screen!
           </p>
         </div>
+
+        {/* Art Buddy Bella Companion */}
+        <motion.div
+          animate={{ y: isDrawing ? [-3, 3, -3] : [0, -4, 0] }}
+          transition={{ repeat: Infinity, duration: isDrawing ? 0.6 : 3.5, ease: 'easeInOut' }}
+          className="hidden sm:flex items-center gap-2.5 bg-white/95 border-2 border-amber-300 rounded-2xl px-3.5 py-1.5 shadow-xs"
+        >
+          <BellaBunnySVG size={36} />
+          <div className="text-left font-cartoon">
+            <div className="text-[10px] text-amber-800 font-extrabold uppercase leading-none">Art Buddy Bella</div>
+            <div className="text-xs font-black text-[#2B2A29] mt-0.5">
+              {isDrawing ? 'Painting magic! ✨' : 'Pick a color & draw! 🖍️'}
+            </div>
+          </div>
+        </motion.div>
 
         {/* Template Buttons */}
         <div className="flex items-center gap-1.5 flex-wrap justify-center">

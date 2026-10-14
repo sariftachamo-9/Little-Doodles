@@ -10,6 +10,7 @@ import { CartDrawer } from './components/CartDrawer';
 import { ColoringPlayground } from './components/ColoringPlayground';
 import { Footer } from './components/Footer';
 
+
 export default function App() {
   const [products] = useState<Product[]>(productsData);
   const [selectedCategory, setSelectedCategory] = useState<ProductCategory>('All Printables');
@@ -106,7 +107,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FFFDF9] text-[#2B2A29] flex flex-col font-sans selection:bg-amber-200">
+    <div className="relative min-h-screen bg-[#FFFDF9] text-[#2B2A29] flex flex-col font-sans selection:bg-amber-200 overflow-x-hidden">
       
       {/* Cartoon Top Bar */}
       <Header

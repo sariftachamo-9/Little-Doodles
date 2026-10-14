@@ -29,15 +29,17 @@ export const ProductModal: React.FC<ProductModalProps> = ({
 }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
   const [sampleDownloaded, setSampleDownloaded] = useState<boolean>(false);
+  const [sampleSuccessNotice, setSampleSuccessNotice] = useState<boolean>(false);
 
   if (!product) return null;
 
   const handleDownloadFreeSample = () => {
     setSampleDownloaded(true);
     setTimeout(() => {
-      alert(`🎉 Free sample printable for "${product.title}" downloaded! Have fun coloring!`);
       setSampleDownloaded(false);
-    }, 800);
+      setSampleSuccessNotice(true);
+      setTimeout(() => setSampleSuccessNotice(false), 3000);
+    }, 600);
   };
 
   return (
@@ -139,9 +141,15 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                     className="px-3 py-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-cartoon font-bold text-xs flex items-center gap-1.5 shadow-xs transition-transform active:scale-95 cursor-pointer"
                   >
                     <Download className="w-3.5 h-3.5" />
-                    <span>{sampleDownloaded ? 'Sending...' : 'Free PDF'}</span>
+                    <span>{sampleDownloaded ? 'Preparing...' : 'Free PDF'}</span>
                   </button>
                 </div>
+
+                {sampleSuccessNotice && (
+                  <div className="p-2.5 bg-emerald-100 rounded-xl text-center text-xs font-cartoon font-bold text-emerald-900 border border-emerald-300">
+                    🎉 Free sample sheet downloaded! Have fun coloring!
+                  </div>
+                )}
 
               </div>
 

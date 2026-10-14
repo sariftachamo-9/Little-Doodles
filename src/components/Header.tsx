@@ -116,16 +116,22 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Backpack / Shopping Cart Button */}
           <motion.button
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.92 }}
             onClick={onOpenCart}
-            className="flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-amber-400 hover:bg-amber-300 text-amber-950 border-2 border-amber-500 shadow-[0_3px_0_0_#D97706] font-cartoon font-black text-xs transition-transform"
+            className="flex items-center gap-2 px-3.5 py-2 rounded-2xl bg-amber-400 hover:bg-amber-300 text-amber-950 border-2 border-amber-500 shadow-[0_3px_0_0_#D97706] font-cartoon font-black text-xs transition-transform cursor-pointer"
           >
             <ShoppingBag className="w-4 h-4" />
             <span className="hidden sm:inline">Backpack</span>
-            <span className="w-5 h-5 rounded-full bg-white text-amber-950 text-[11px] font-black flex items-center justify-center border border-amber-300 shadow-2xs">
+            <motion.span
+              key={cartCount}
+              initial={{ scale: 0.7 }}
+              animate={{ scale: 1 }}
+              transition={{ type: 'spring', damping: 10, stiffness: 300 }}
+              className="w-5 h-5 rounded-full bg-white text-amber-950 text-[11px] font-black flex items-center justify-center border border-amber-300 shadow-2xs"
+            >
               {cartCount}
-            </span>
+            </motion.span>
           </motion.button>
 
         </div>
