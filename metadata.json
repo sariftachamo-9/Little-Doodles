@@ -1,0 +1,6 @@
+{
+  "name": "LittleDoodles - Cross-Border E-Commerce Compliance & Legal Suite",
+  "description": "Comprehensive compliance, legal documentation, and regulatory governance suite for LittleDoodles digital children's store cross-border e-commerce operations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
